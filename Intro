@@ -1,0 +1,65 @@
+Create a Ubuntu EC2 Instance 
+After creation open the console -> Install Java
+    sudo apt update
+    sudo apt install openjdk-17-jre
+    java -version
+
+Prerequisitis - Java(JDK)
+
+Install Jenkins
+curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
+/usr/share/keyrings/jenkins-keyring.asc > /dev/null
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
+
+** Note: ** By default, Jenkins will not be accessible to the external world due to the inbound traffic restriction by AWS. Open port 8080 in the inbound traffic rules as show below.
+EC2 > Instances > Click on
+In the bottom tabs -> Click on Security
+Security groups
+Add inbound traffic rules as shown in the image (you can just allow TCP 8080 as well, in my case, I allowed All traffic).
+Screenshot 2023-02-01 at 12 42 01 PM
+
+Login to Jenkins using the below URL:
+
+http://ec2-52-14-45-73.us-east-2.compute.amazonaws.com:8080
+
+After you login to Jenkins, - Run the command to copy the Jenkins Admin Password - sudo cat /var/lib/jenkins/secrets/initialAdminPassword - Enter the Administrator password
+
+66a24b4553d84e0787e1a420e5c58800
+
+Enter
+
+Install the pluggins
+Give the required details. Now Jenkins is ready to USE.
+
+////////////////////////////////// Jenkins is a Java based application //////////////////////////////
+
+Yes, by default, Jenkins uses port 8080 for its web interface. When you install Jenkins on a server, it is typically configured to run on this port, which allows you to access the Jenkins dashboard via a web browser using a URL like http://<your-server-ip>:8080.
+
+Summary:
+Default Port: 8080 is the default port for Jenkins.
+Web Interface: This port is used to serve the Jenkins web interface, where you can manage your Jenkins jobs, configurations, and plugins.
+Customization: You can change the default port if needed, but 8080 is the standard port assigned during installation.
+If Jenkins is properly installed and running on your server, you should be able to access it using the public IP or DNS of your server, followed by :8080 in your web browser.
+
+publiIP:8080
+
+go with suggested--> they have already came up with the list which are useful for us.
+
+----------------------Installation Part is done ---------------
+
+How jenkins work in real world
+
+Architecture 
+
+
+
+Jenkins Master -->created on Ec2 instance 
+
+Resume point: we have used docker as agent in our jenkins project setup and we have found it very useful interms of cost and efficiency
+and spinning up and tearing down the docker containers.
+
+
