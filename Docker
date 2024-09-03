@@ -1,0 +1,13 @@
+Install
+sudo apt install docker.io
+
+To restart Jenkins 
+
+IPaddress:8080/restart
+
+Install the Docker Pipeline plugin in Jenkins:
+Log in to Jenkins.
+Go to Manage Jenkins > Manage Plugins.
+In the Available tab, search for "Docker Pipeline".
+Select the plugin and click the Install button.
+Restart Jenkins after the plugin is installed.
